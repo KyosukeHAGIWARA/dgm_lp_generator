@@ -1,0 +1,59 @@
+{
+    "client": {
+        "name": "テストクライアント",
+        "shop_id": [
+            9999
+        ],
+        "shop_url": "https://www.digimart.net/shop/1840/"
+    },
+    "sale": {
+        "title": "てきとうセール",
+        "period": {
+            "start": {
+                "yyyy": 2020,
+                "mm": 4,
+                "dd": 1,
+                "wd": "火",
+                "time": "23:59"
+            },
+            "end": {
+                "yyyy": 2020,
+                "mm": 4,
+                "dd": 3,
+                "wd": "木",
+                "time": "23:59"
+            }
+        },
+        "main_img_path": {
+            "pc": "./test_pc_main.png",
+            "sp": "./test_sp_main.png"
+        },
+        "main_widget_item_list": [{
+                "url": "https://www.digimart.net/search?ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019",
+                "description": "予告商品！1"
+            },
+            {
+                "url": "https://www.digimart.net/search?ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019",
+                "description": "予告商品！2"
+            },
+            {
+                "url": "https://www.digimart.net/search?ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019",
+                "description": "予告商品！3"
+            },
+            {
+                "url": "https://www.digimart.net/search?ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019",
+                "description": "予告商品！4"
+            },
+            {
+                "url": "https://www.digimart.net/search?ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019",
+                "description": "予告商品！5"
+            }
+        ],
+        "btn_all_item": {
+            "url": "https://www.digimart.net/search?ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019"
+        }
+    },
+    "misc": {
+        "url": "https://www.digimart.net/ch/test_sale_20200218/"
+    }
+}
