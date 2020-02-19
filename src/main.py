@@ -14,6 +14,7 @@ def create_lp_folder(folder_path):
     else:
         print('This folder is already exist.')
 
+
 if __name__ == '__main__':
     
     # secretなデータを読み込む
@@ -33,7 +34,7 @@ if __name__ == '__main__':
     now_str = datetime.now().strftime('%Y%m%d_%H%M%S')
 
     # LPを置いとくフォルダをローカルに生成
-    lp_path = '{}{}_{}/'.format(secret['local_lp_path'], secret['client_key'], now_str)
+    lp_path = '{}{}_{}/'.format(secret['local_lp_path'], input_data['client_key'], now_str)
     create_lp_folder(lp_path)
 
 
@@ -50,12 +51,17 @@ if __name__ == '__main__':
     # シェルスクリプトの引数をセッティング
     arg_list = [
         secret['local_lp_path'],
-        '{}_{}/'.format(secret['client_key'], now_str),
+        '{}_{}/'.format(input_data['client_key'], now_str),
         secret['ftp_address'],
         secret['ftp_remote_path'],
         secret['ftp_id'],
         secret['ftp_pass']
     ]
-
-    
     os.system('./lp_folder_up.sh {0[0]} {0[1]} {0[2]} {0[3]} {0[4]} {0[5]}'.format(arg_list))
+
+    print('')
+    print('Upload Completed! Check this url.')
+    print('=================================================================')
+    print('https://www.digimart.net/ch/{}_{}/'.format(input_data['client_key'], now_str))
+    print('=================================================================')
+

@@ -90,21 +90,4 @@ def generate_lp(output_file_path, input_data):
 
 if __name__ == '__main__':
 
-    # secretなデータを読み込む
-    secret = {}
-    with open('secret.json', 'r', encoding='utf-8') as f:
-        secret = json.load(f)
-
-
-    # グローバルで使うクライアントの識別子(ディレクトリ,LPのパスとか)
-    client_key = secret['client_key']
-
-    # inputデータのファイルパス
-    input_csv = '../input/' + secret['input_csv'] 
-
-    now_str = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-
-    default_file_path = generate_default_file(input_csv, now_str)
-
-    generate_html('../output/{}/pc/'.format(client_key), default_file_path, './template/PC/general_template.html', now_str)
-    generate_html('../output/{}/sp/'.format(client_key), default_file_path, './template/SP/general_template.html', now_str)
+    print('This is generateHtml')
