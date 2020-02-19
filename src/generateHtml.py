@@ -6,17 +6,17 @@ import os
 from jinja2 import Template, Environment, FileSystemLoader
 
 
-def generate_default_file(input_file_path, timestamp_str):
+def generate_default_file(input_data, timestamp_str):
     # inputからデータを読み込み
-    input_data = {}
-    with open(input_file_path, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        # header = next(reader)  # ヘッダーを読み飛ばしたい時
+    # input_data = {}
+    # with open(input_file_path, 'r', encoding='utf-8') as f:
+    #     reader = csv.reader(f)
+    #     # header = next(reader)  # ヘッダーを読み飛ばしたい時
 
-        for row in reader:
-            input_data[row[0]] = row[1] 
+    #     for row in reader:
+    #         input_data[row[0]] = row[1] 
 
-    print(input_data)
+    # print(input_data)
 
 
     # base_defaultを読み込んで、今回の分のdefault.jsonを新規作成
@@ -47,9 +47,9 @@ def generate_default_file(input_file_path, timestamp_str):
             'time': re.findall(r'[0-9]+:[0-9]+', input_data['end'])[0]
         },
     }
-    print(default_data)
+    # print(default_data)
 
-    default_savepath = '../src/resource/default/test_client/' + 'default_extend_{}.json'.format(timestamp_str)
+    default_savepath = '../src/resource/default/{}/'.format(input_data['client_key']) + 'default_{}.json'.format(timestamp_str)
     with open(default_savepath, 'w', encoding='utf-8') as outfile:
         json.dump(default_data, outfile,ensure_ascii=False)
 
@@ -68,9 +68,24 @@ def generate_html(output_folder_path, default_file_path, template_folder_path,  
     tpl = env.get_template(template_folder_path)
     render = tpl.render(default_data)
 
-    output_savepath = output_folder_path + 'output_{}.html'.format(timestamp_str)
+    # output_savepath = output_folder_path + 'output_{}.html'.format(timestamp_str)
+    output_savepath = output_folder_path
     with open(output_savepath, 'w', encoding='utf_8') as stream:
             stream.write(render)
+
+
+def generate_lp(output_file_path, input_data):
+
+    now_str = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+
+    default_file_path = generate_default_file(input_data, now_str)
+
+    generate_html('{}PC/index.html'.format(output_file_path), default_file_path, input_data['pc_template'], now_str)
+    generate_html('{}SP/index.html'.format(output_file_path), default_file_path, input_data['sp_template'], now_str)
+
+
+
+
 
 
 if __name__ == '__main__':
