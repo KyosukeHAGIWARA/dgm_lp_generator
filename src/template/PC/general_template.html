@@ -278,23 +278,16 @@
 
             <!-- HEADER-TEXT LINK ============================== -->
             <div style="margin:20px 0 15px 0;padding:0;text-align:center;font-weight:bold;font-size:125%;">
-
                 <a
                     href="https://www.digimart.net/search?shopNo=1840,3821,4734&ecpurchasep=on&salep=on&shopsalep=on&tagWords=sss2019">全商品</a>
-                <!--｜<a href="#01">おすすめ品</a>
-                ｜<a href="#02">特価品</a>-->
-                ｜<a href="#03">中古品</a>
-                ｜<a href="#11">エレキギター</a>
-                ｜<a href="#12">ベース</a>
-                ｜<a href="#13">アコギ/エレアコ</a>
-                ｜<a href="#14">クラシックギター</a>
-                ｜<a href="#15">ウクレレ</a>
-                ｜<a href="#16">ドラム</a>
-                ｜<a href="#17">デジタル楽器・機材</a>
-                ｜<a href="#18">エフェクター</a>
-                ｜<a href="#19">アンプ</a>
+
+                {# MAIN WIDGET ITEM ITER #}
+                {% for widget in sale.main_widget_item_list %}
+                ｜<a href="#{{loop.index}}">{{widget.description}}</a>
+                {% endfor %}
 
             </div>
+
 
 
 

@@ -2,6 +2,7 @@ import csv
 import json
 import re
 import datetime
+import os
 from jinja2 import Template, Environment, FileSystemLoader
 
 
@@ -74,11 +75,17 @@ def generate_html(output_folder_path, default_file_path, template_folder_path,  
 
 if __name__ == '__main__':
 
+    # secretなデータを読み込む
+    secret = {}
+    with open('secret.json', 'r', encoding='utf-8') as f:
+        secret = json.load(f)
+
+
     # グローバルで使うクライアントの識別子(ディレクトリ,LPのパスとか)
-    client_key = 'rockinn_shinjuku'
+    client_key = secret['client_key']
 
     # inputデータのファイルパス
-    input_csv = '../input/' + 'order_test_client_20200218.csv'
+    input_csv = '../input/' + secret['input_csv'] 
 
     now_str = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 
