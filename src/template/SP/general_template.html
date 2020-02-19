@@ -8,9 +8,12 @@
     <meta http-equiv="imagetoolbar" content="no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="canonical" href="{{misc.url}}" />
-    <title>{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】</title>
-    <meta name="description" content="{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】" />
-    <meta property="og:title" content="{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】" />
+    <title>{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}})
+        {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】</title>
+    <meta name="description"
+        content="{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】" />
+    <meta property="og:title"
+        content="{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{misc.url}}" />
     <meta property="og:image" content="http://www.digimart.net/app/public/img/digimart_logo_OGP.png" />
@@ -74,14 +77,15 @@
 
     <!-- HEADER-MAIN IMAGE ============================== -->
     <div style="background:#000;text-align:center;padding:5px 0;margin:0;color:#fff;font-weight:bold;font-size:90%;">
-        {{client.name}}　{{sale.period.start.mm}}/{{sale.period.start.dd}} - {{sale.period.end.mm}}/{{sale.period.end.dd}}限定開催<br />
+        {{client.name}}　{{sale.period.start.mm}}/{{sale.period.start.dd}} -
+        {{sale.period.end.mm}}/{{sale.period.end.dd}}限定開催<br />
         {{sale.title}}
     </div>
 
     <div style="background:#ff0;text-align:center;padding:0;margin:0;overflow:hidden;">
-        <a href="{{btn_all_item.url}}"
-            target="_blank">
-            <img src="{{sale.main_img_path.sp}}" alt="{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】"
+        <a href="{{sale.btn_all_item.url}}" target="_blank">
+            <img src="{{sale.main_img_path.sp}}"
+                alt="{{client.name}} {{sale.title}} {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで　1点もの多数ですので購入はお早めに！　【楽器検索デジマート】"
                 width="100%" border="0" />
         </a>
     </div>
@@ -93,8 +97,7 @@
     <!-- HEADER-TEXT AREA ============================== -->
     <div
         style="margin:0;padding:6px 4px 10px 4px;border-bottom:2px solid #000;background:#ff0;font-size:115%;text-align:center;font-weight:bold;color:#000;">
-        <a href="{{btn_all_item.url}}"
-            target="_blank">
+        <a href="{{sale.btn_all_item.url}}" target="_blank">
             {{client.name}}<br />
             {{sale.period.end.mm}}月{{sale.period.end.dd}}日({{sale.period.end.wd}}) {{sale.period.end.time}} まで限定開催<br />
             {{sale.title}}
@@ -129,8 +132,7 @@
 
 
     <!-- [LINK] BUTTON ============================== -->
-    <a href="{{btn_all_item.url}}"
-        style="color:#f00;">
+    <a href="{{sale.btn_all_item.url}}" style="color:#f00;">
         <div
             style="background:#ff0;font-size:130%;font-weight:bold;text-align:center;margin:15px auto;padding:20px;border:3px solid #f00;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;width:80%;">
             セール商品一覧はこちら
@@ -142,22 +144,21 @@
 
 
     {# MAIN WIDGET ITEM ITER #}
-    {% for widget in main_widget_item_list %}
-        <a name="{{loop.index}}" id="{{loop.index}}"></a>
-        <!-- DIGIMART ITEM WIDGET ==============================-->
-        <div id="mysearch" class="product-search">
-        <a class="digimart-inst-widget" 
-            href="{{widget.url}}" data-digimart-color="#F00" data-digimart-max-item="20" data-digimart-link-text="対象商品はこちら">［{{client.name}}］{{widget.description}}</a>
-        </div>
-        <div style="clear:both;"></div>
+    {% for widget in sale.main_widget_item_list %}
+    <a name="{{loop.index}}" id="{{loop.index}}"></a>
+    <!-- DIGIMART ITEM WIDGET ==============================-->
+    <div id="mysearch" class="product-search">
+        <a class="digimart-inst-widget" href="{{widget.url}}" data-digimart-color="#F00" data-digimart-max-item="20"
+            data-digimart-link-text="対象商品はこちら">［{{client.name}}］{{widget.description}}</a>
+    </div>
+    <div style="clear:both;"></div>
     {% endfor %}
 
 
 
 
     <!-- [LINK] BUTTON ============================== -->
-    <a href="{{btn_all_item.url}}"
-        style="color:#f00;">
+    <a href="{{sale.btn_all_item.url}}" style="color:#f00;">
         <div
             style="background:#ff0;font-size:130%;font-weight:bold;text-align:center;margin:15px auto;padding:20px;border:3px solid #f00;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;width:80%;">
             【まだまだあります】<br />
