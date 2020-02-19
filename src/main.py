@@ -5,7 +5,6 @@ import datetime
 from jinja2 import Template, Environment, FileSystemLoader
 
 
-
 def generate_default_file(input_file_path, timestamp_str):
     # inputからデータを読み込み
     input_data = {}
@@ -16,7 +15,7 @@ def generate_default_file(input_file_path, timestamp_str):
         for row in reader:
             input_data[row[0]] = row[1] 
 
-    # print(input_data)
+    print(input_data)
 
 
     # base_defaultを読み込んで、今回の分のdefault.jsonを新規作成
@@ -24,7 +23,7 @@ def generate_default_file(input_file_path, timestamp_str):
     with open(input_data['base_default'], 'r', encoding='utf-8') as f:
         default_data = json.load(f)
 
-    default_data['title'] = input_data['title']
+    default_data['sale']['title'] = input_data['title']
 
     default_data['sale']['main_img_path'] = {
         'pc': input_data['pc_image'],
@@ -49,7 +48,7 @@ def generate_default_file(input_file_path, timestamp_str):
     }
     print(default_data)
 
-    default_savepath = '../../src/resource/default/test_client/' + 'default_extend_{}.json'.format(timestamp_str)
+    default_savepath = '../src/resource/default/test_client/' + 'default_extend_{}.json'.format(timestamp_str)
     with open(default_savepath, 'w', encoding='utf-8') as outfile:
         json.dump(default_data, outfile,ensure_ascii=False)
 
@@ -64,7 +63,7 @@ def generate_html(output_folder_path, default_file_path, template_folder_path,  
     with open(default_file_path, 'r', encoding='utf-8') as f:
         default_data = json.load(f)
 
-    env = Environment(loader=FileSystemLoader('../', encoding='utf_8'))
+    env = Environment(loader=FileSystemLoader('.', encoding='utf_8'))
     tpl = env.get_template(template_folder_path)
     render = tpl.render(default_data)
 
@@ -76,13 +75,13 @@ def generate_html(output_folder_path, default_file_path, template_folder_path,  
 if __name__ == '__main__':
 
     # グローバルで使うクライアントの識別子(ディレクトリ,LPのパスとか)
-    client_key = 'test_client'
+    client_key = 'rockinn_shinjuku'
 
     # inputデータのファイルパス
-    input_csv = '../../input/' + 'order_test_client_20200218.csv'
+    input_csv = '../input/' + 'order_test_client_20200218.csv'
 
     now_str = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 
     default_file_path = generate_default_file(input_csv, now_str)
 
-    generate_html('../../src/resource/default/test_client/', default_file_path, './template/PC/general_template.html', now_str)
+    generate_html('../output/{}/'.format(client_key), default_file_path, './template/PC/general_template.html', now_str)
