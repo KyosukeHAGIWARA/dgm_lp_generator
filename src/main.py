@@ -57,7 +57,6 @@ if __name__ == '__main__':
 
 
 
-
     # フォルダXに画像を引っ張ってくる
     print('')
     shutil.copy2('{}{}'.format(secret['image_downloads_path'], input_data['pc_image']), '{}PC/{}'.format(lp_path, input_data['pc_image']))
