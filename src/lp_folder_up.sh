@@ -7,10 +7,12 @@ ftp_remote_path=$4
 ftp_id=$5
 ftp_pass=$6
 
-
+echo
+echo ==========================start shell============================
 cd ${lp_path}${lp_pass}
 pwd
 
+echo ===========================start FTP=============================
 ftp -n << END
 open $ftp_address
 user $ftp_id $ftp_pass 
@@ -37,3 +39,5 @@ mput *
 
 bye
 END
+echo ==============+=============end FTP==============================
+echo ===========================end shell=============================
